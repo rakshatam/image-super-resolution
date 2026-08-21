@@ -142,6 +142,8 @@ Despite the aggressive parameter constraint ($\sim 1\text{M}$) and remarkably br
 <img width="1332" height="445" alt="butterfly" src="https://github.com/user-attachments/assets/61ce7b4a-fb59-46dc-b3c8-42e4a049ee90" />
 <img width="1332" height="350" alt="building" src="https://github.com/user-attachments/assets/a2b3f559-7229-421d-b3be-f9fdc93cfafc" />
 <img width="1340" height="350" alt="zebra" src="https://github.com/user-attachments/assets/48c798da-b91f-442f-b8de-4fc9bc38ade0" />
+<img width="1331" height="391" alt="Screenshot 2026-08-21 171720" src="https://github.com/user-attachments/assets/5cea18e5-4d12-478a-b84d-5b122031359e" />
+
 
 
 
