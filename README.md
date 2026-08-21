@@ -1,6 +1,6 @@
 # NAFNet-SR: Highly Efficient Super-Resolution 
 
-This repository contains the implementation, training details, and benchmark results for our custom **NAFNet-SR** model. Designed for extreme efficiency, this model achieves highly competitive super-resolution performance on a strict $<1\text{M}$ parameter budget, performing on par with NTIRE 2025 Efficient Super-Resolution competition benchmarks.
+This repository contains the implementation, training details, and benchmark results for our custom **NAFNet-SR** model. Designed for extreme efficiency, this model achieves highly competitive super-resolution performance on a strict $<1\text{M}$ parameter budget.
 
 ## 🧠 Architecture Deep Dive
 
