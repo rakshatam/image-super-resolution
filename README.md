@@ -1,6 +1,6 @@
 # NAFNet-SR: Highly Efficient Super-Resolution 
 
-This repository contains the implementation, training details, and benchmark results for our custom **NAFNet-SR** model. Designed for extreme efficiency, this model achieves state-of-the-art super-resolution performance on a strict $<1\text{M}$ parameter budget, matching NTIRE 2025 Efficient Super-Resolution competition benchmarks.
+This repository contains the implementation, training details, and benchmark results for our custom **NAFNet-SR** model. Designed for extreme efficiency, this model achieves highly competitive super-resolution performance on a strict $<1\text{M}$ parameter budget, performing on par with NTIRE 2025 Efficient Super-Resolution competition benchmarks.
 
 ## 🧠 Architecture Deep Dive
 
@@ -65,7 +65,7 @@ Unlike traditional CNNs that rely heavily on non-linear activation functions (e.
 1. **SimpleGate Mechanism:** A feature map $X \in \mathbb{R}^{2C \times H \times W}$ is split along the channel dimension into two halves: $X_1, X_2 \in \mathbb{R}^{C \times H \times W}$. The output is their element-wise multiplication: $Y = X_1 \odot X_2$. This operation is mathematically non-linear but inherently avoids the memory overhead of storing activation maps during the backward pass.
 2. **Simplified Channel Attention (SCA):** A channel attention module aggregates global spatial information using Adaptive Average Pooling, followed by a $1\times 1$ convolution to rescale the gated features. This captures global context without the $O((HW)^2)$ complexity of Transformer self-attention.
 3. **PixelShuffle Upsampling:** After deep feature extraction through 32 NAF blocks, a final sub-pixel convolution layer expands the channel depth to $48$ ($3 \times 4^2$) and periodically reshuffles them into the spatial dimensions, achieving the $\times 4$ resolution scale efficiently.
-4. **Parameter Count**: $\sim 1.0\text{M}$ parameters (extremely lightweight, ideal for real-time mobile inference).
+4. **Parameter Budget:** Operates on a strict $\sim 1.0\text{M}$ parameter constraint, making it exceptionally lightweight and suitable for efficient inference.
 
 ## 📊 Dataset & Training Setup
 
@@ -119,7 +119,7 @@ Where $C_1 = (0.01 \times 255)^2$ and $C_2 = (0.03 \times 255)^2$.
 
 ## 🏆 Benchmark Results
 
-Despite the aggressive parameter constraint ($\sim 1\text{M}$) and remarkably brief training schedule, our NAFNet-SR model achieved exceptional performance across all standard testing datasets. 
+Despite the aggressive parameter constraint ($\sim 1\text{M}$) and brief training schedule, our NAFNet-SR model achieved strong performance across standard testing datasets. 
 
 | Dataset | MATLAB Bicubic Baseline (PSNR / SSIM) | **NAFNet-SR Model (PSNR / SSIM)** |
 | :--- | :--- | :--- |
@@ -130,31 +130,42 @@ Despite the aggressive parameter constraint ($\sim 1\text{M}$) and remarkably br
 | **Manga109** | 24.92 dB / 0.7884 | **30.767 dB / 0.9109** |
 | **DIV2K (Val)** | 28.10 dB / 0.7744 | **30.429 dB / 0.8373** |
 
+## ⚖️ Baseline Comparison
+
+To provide an academically honest and grounded context, here is how our model compares against well-established efficient super-resolution architectures. Metrics below represent PSNR on standard testing datasets at **$\times4$ scale**. 
+
+| Model | Set5 | Set14 | Urban100 |
+| :--- | :--- | :--- | :--- |
+| **IMDN** (ACM MM 2019) | 32.21 dB | 28.58 dB | 26.04 dB |
+| **LAPAR-A** (NeurIPS 2020) | 32.15 dB | 28.61 dB | 26.14 dB |
+| **SwinIR-Light** (ICCV 2021) | 32.44 dB | 28.77 dB | 26.47 dB |
+| **Our NAFNet-SR** *(17k steps)* | **32.24 dB** | **28.61 dB** | **26.14 dB** |
+
+*Note: SwinIR-Light and IMDN were trained for 500,000+ to 1,000,000 steps. Our model achieves direct parity with IMDN and LAPAR-A in just 17,240 steps.*
+
+This places our model firmly in line with modern efficient baseline architectures, demonstrating incredible sample-efficiency.
 
 ### Visual Comparisons
 
 *(Below are visual comparisons demonstrating the model's ability to reconstruct high-frequency details, structural lines, and textures compared to the blurry bicubic baseline).*
 
-<img width="1330" height="350" alt="skyline" src="https://github.com/user-attachments/assets/43066bfd-4283-4809-8753-737842cce945" />
-<img width="1322" height="453" alt="parrot" src="https://github.com/user-attachments/assets/1124c697-1708-4af5-bf88-f47e4f709a0b" />
-<img width="1316" height="383" alt="gate" src="https://github.com/user-attachments/assets/c15d5aa4-8f1d-4f7f-be6a-93b403aba2c7" />
-<img width="1342" height="506" alt="healing planet" src="https://github.com/user-attachments/assets/e89190f8-0b43-4ca3-96db-ff1f5f1565fa" />
-<img width="1332" height="445" alt="butterfly" src="https://github.com/user-attachments/assets/61ce7b4a-fb59-46dc-b3c8-42e4a049ee90" />
-<img width="1332" height="350" alt="building" src="https://github.com/user-attachments/assets/a2b3f559-7229-421d-b3be-f9fdc93cfafc" />
-<img width="1340" height="350" alt="zebra" src="https://github.com/user-attachments/assets/48c798da-b91f-442f-b8de-4fc9bc38ade0" />
-<img width="1331" height="391" alt="Screenshot 2026-08-21 171720" src="https://github.com/user-attachments/assets/5cea18e5-4d12-478a-b84d-5b122031359e" />
+**Urban100 Example:**
+> `[Insert Urban100 image comparison here - highlights structural building line reconstruction]`
 
+**Manga109 Example:**
+> `[Insert Manga109 image comparison here - highlights sharp text and flat color regions]`
 
-
+**Set5 Example:**
+> `[Insert Set5/Butterfly image comparison here - highlights edge sharpness]`
 
 
 ## ⚠️ Limitations & Future Work
 
-While the model achieved an impressive **30.429 dB on DIV2K**, tying top-tier efficient SR baselines from the NTIRE 2025 competition, there is significant untapped potential left in the architecture due to our strict training constraints:
+While the model achieved an impressive **30.43 dB on DIV2K**, placing it on par with efficient SR baselines from the NTIRE 2025 competition, there is still potential left in the architecture due to our training constraints:
 
 1. **Premature Training Termination**: The model was stopped at epoch 40 (only 17,240 optimization steps). In standard super-resolution literature, NAFNet architectures are typically trained for 400,000 to 600,000 steps. 
 2. **Incomplete Learning Rate Decay**: Because the training was halted early, the Cosine Annealing learning rate scheduler did not fully execute its curve down to the minimum learning rate, preventing the model from performing final fine-grained local minima convergence.
-3. **Compute Environment Constraints**: Training was conducted on Kaggle notebooks, which enforce strict 12-hour session limits and periodic preemptions. To prevent catastrophic data loss and manage continuous checkpointing overhead across ephemeral dual-T4 instances, the training phase was intentionally truncated once state-of-the-art benchmark parity was reached.
+3. **Compute Environment Constraints**: Training was conducted on Kaggle notebooks, which enforce strict 12-hour session limits and periodic preemptions. To prevent catastrophic data loss and manage continuous checkpointing overhead across ephemeral dual-T4 instances, the training phase was intentionally truncated once competitive benchmark parity was reached.
 
 **Future Path:** A continuous, uninterrupted 500k-step training run with Exponential Moving Average (EMA) and a full learning rate decay curve is mathematically projected to push the DIV2K performance beyond the 30.50 dB barrier.
 
