@@ -135,14 +135,15 @@ Despite the aggressive parameter constraint ($\sim 1\text{M}$) and remarkably br
 
 *(Below are visual comparisons demonstrating the model's ability to reconstruct high-frequency details, structural lines, and textures compared to the blurry bicubic baseline).*
 
-**Urban100 Example:**
-> `[Insert Urban100 image comparison here - highlights structural building line reconstruction]`
+<img width="1330" height="350" alt="skyline" src="https://github.com/user-attachments/assets/43066bfd-4283-4809-8753-737842cce945" />
+<img width="1322" height="453" alt="parrot" src="https://github.com/user-attachments/assets/1124c697-1708-4af5-bf88-f47e4f709a0b" />
+<img width="1316" height="383" alt="gate" src="https://github.com/user-attachments/assets/c15d5aa4-8f1d-4f7f-be6a-93b403aba2c7" />
+<img width="1342" height="506" alt="healing planet" src="https://github.com/user-attachments/assets/e89190f8-0b43-4ca3-96db-ff1f5f1565fa" />
+<img width="1332" height="445" alt="butterfly" src="https://github.com/user-attachments/assets/61ce7b4a-fb59-46dc-b3c8-42e4a049ee90" />
+<img width="1332" height="350" alt="building" src="https://github.com/user-attachments/assets/a2b3f559-7229-421d-b3be-f9fdc93cfafc" />
+<img width="1340" height="350" alt="zebra" src="https://github.com/user-attachments/assets/48c798da-b91f-442f-b8de-4fc9bc38ade0" />
 
-**Manga109 Example:**
-> `[Insert Manga109 image comparison here - highlights sharp text and flat color regions]`
 
-**Set5 Example:**
-> `[Insert Set5/Butterfly image comparison here - highlights edge sharpness]`
 
 
 ## ⚠️ Limitations & Future Work
