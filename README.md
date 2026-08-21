@@ -80,7 +80,9 @@ The model was trained using a high-quality spatial dataset and accelerated on di
 ### Optimization & Loss Function
 To optimize the network, we utilized the **L1 Loss (Mean Absolute Error)**. Unlike L2 Loss (MSE) which heavily penalizes large errors but can lead to overly smoothed textures, L1 Loss promotes sharper high-frequency edge reconstruction which is critical for super-resolution tasks.
 
-$$ \mathcal{L}_1 = \frac{1}{N} \sum_{i=1}^{N} \left\| I_{SR}^{(i)} - I_{HR}^{(i)} \right\|_1 $$
+$$
+\mathcal{L}_1 = \frac{1}{N} \sum_{i=1}^{N} \left\| I_{SR}^{(i)} - I_{HR}^{(i)} \right\|_1
+$$
 
 The optimizer used was AdamW ($\beta_1=0.9, \beta_2=0.999$, weight decay $10^{-4}$) paired with a Cosine Annealing learning rate scheduler.
 
@@ -90,16 +92,29 @@ To ensure perfectly accurate comparisons against published literature, all metri
 
 ### 1. Color Space Conversion (ITU-R BT.601)
 Images are converted from RGB to the YCbCr color space. Metrics are calculated exclusively on the **Y (Luminance) channel**, matching the exact math used by MATLAB's `rgb2ycbcr` function:
-$$ Y = 16.0 + \frac{65.481 \cdot R + 128.553 \cdot G + 24.966 \cdot B}{255.0} $$
+
+$$
+Y = 16.0 + \frac{65.481 \cdot R + 128.553 \cdot G + 24.966 \cdot B}{255.0}
+$$
 
 ### 2. Peak Signal-to-Noise Ratio (PSNR)
 PSNR is calculated on the shaved Y-channels (with a 4-pixel border removed to ignore boundary artifacts). Given the ground truth $I_{HR}$ and the super-resolved image $I_{SR}$:
-$$ MSE = \frac{1}{H W} \sum_{i=1}^{H} \sum_{j=1}^{W} (I_{HR}(i,j) - I_{SR}(i,j))^2 $$
-$$ PSNR = 10 \cdot \log_{10} \left( \frac{255^2}{MSE} \right) \text{ dB} $$
+
+$$
+MSE = \frac{1}{H W} \sum_{i=1}^{H} \sum_{j=1}^{W} (I_{HR}(i,j) - I_{SR}(i,j))^2
+$$
+
+$$
+PSNR = 10 \cdot \log_{10} \left( \frac{255^2}{MSE} \right) \text{ dB}
+$$
 
 ### 3. Structural Similarity Index (SSIM)
 SSIM measures the perceived degradation in structural information using an $11\times 11$ Gaussian kernel with standard deviation $\sigma=1.5$. It computes luminance ($\mu$), contrast ($\sigma^2$), and structure ($\sigma_{xy}$) comparisons:
-$$ SSIM(x, y) = \frac{(2\mu_x\mu_y + C_1)(2\sigma_{xy} + C_2)}{(\mu_x^2 + \mu_y^2 + C_1)(\sigma_x^2 + \sigma_y^2 + C_2)} $$
+
+$$
+SSIM(x, y) = \frac{(2\mu_x\mu_y + C_1)(2\sigma_{xy} + C_2)}{(\mu_x^2 + \mu_y^2 + C_1)(\sigma_x^2 + \sigma_y^2 + C_2)}
+$$
+
 Where $C_1 = (0.01 \times 255)^2$ and $C_2 = (0.03 \times 255)^2$.
 
 ## 🏆 Benchmark Results
