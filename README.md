@@ -149,14 +149,17 @@ This places our model firmly in line with modern efficient baseline architecture
 
 *(Below are visual comparisons demonstrating the model's ability to reconstruct high-frequency details, structural lines, and textures compared to the blurry bicubic baseline).*
 
-**Urban100 Example:**
-> `[Insert Urban100 image comparison here - highlights structural building line reconstruction]`
+<img width="1340" height="350" alt="zebra" src="https://github.com/user-attachments/assets/e2a4fe46-9305-49b1-ad2a-8cb98cba5c7b" />
+<img width="1330" height="350" alt="skyline" src="https://github.com/user-attachments/assets/c71f4526-3c95-4629-b546-2b93370234b6" />
+<img width="1322" height="453" alt="parrot" src="https://github.com/user-attachments/assets/ba290662-f155-4255-8d50-9e3063bd9c9b" />
+<img width="1342" height="506" alt="healing planet" src="https://github.com/user-attachments/assets/1094bb4c-cc04-47d2-8a27-d168cd4beaa3" />
+<img width="1316" height="383" alt="gate" src="https://github.com/user-attachments/assets/961dc0fe-d0fa-4b52-8179-ebf169d05cc5" />
+<img width="1332" height="445" alt="butterfly" src="https://github.com/user-attachments/assets/ecf44d8e-ad0c-4428-9d40-9a729b07fdf0" />
+<img width="1332" height="350" alt="building" src="https://github.com/user-attachments/assets/426dc76e-2ac6-4ec0-ae72-83db63bab519" />
+<img width="1331" height="391" alt="Screenshot 2026-08-21 171720" src="https://github.com/user-attachments/assets/bef3b427-7ee5-4678-9bcc-f34e82a193bf" />
 
-**Manga109 Example:**
-> `[Insert Manga109 image comparison here - highlights sharp text and flat color regions]`
 
-**Set5 Example:**
-> `[Insert Set5/Butterfly image comparison here - highlights edge sharpness]`
+
 
 
 ## ⚠️ Limitations & Future Work
